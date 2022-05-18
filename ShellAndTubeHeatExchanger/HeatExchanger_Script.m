@@ -1,19 +1,10 @@
 clc; clear data; clear;
 %% Heat_Exchanger Project
-% Student: Babak_Heydari
-% STU.Num.: 9524113
-% Supervisor: Proff. M.R.Shahnazari & Ali Saberi
+% Student: Mohammad Fattahi
 % Winter 2021
-disp('Heat_Exchanger Project')
-disp('Student: Babak_Heydari')
-disp('STU.Num.: 9524113')
-disp('Supervisor: Proff. M.R.Shahnazari & Ali Saberi')
-disp('Winter 2021');
-
-
 
 %% First Part: Detemining the Exchanger Type
-% first, we should determine wich kind of exchanger we want to design.
+% first, we should determine wich type of heat exchanger we want to design.
 
 disp('Select the Exchanger-Type from the list bellow: ');
 disp('1.Fixed Head      2.Kettle Reboiler      3.U-Tube');
@@ -32,7 +23,7 @@ while 1>0
 end
 %% Second Part: Selecting Cold & Hot Fluids Type
 
-disp('Select the cold fluid from the list bellow (due to the tube-side): ');
+disp('Select the cold fluid from the list bellow (tube-side): ');
 disp('1.Treatd Water          2.Untreated Water          3.Sea Water          4.Air');
 b = input(': ');
 % determining the constant due to the water kind.
@@ -65,7 +56,7 @@ while 1>0
         HDI = 0.0000001;
         break;
     end
-    b = input('ERROR! Chosen type is invalid. Please enter the valid number: ');
+    b = input('ERROR! Chosen type is invalid. Please enter a valid number: ');
 end
 disp('Select the hot fluid (shell-side): ');
 disp('1. Treated Water                2.Water Vapor');
@@ -99,7 +90,7 @@ while 1>0
     if P>=4200 && P<6200
         break;
     end
-    P = input('ERROR! The Valid range for pressure is between 700 and 6200 kPag. Enter a pressure in the accurate range: ');
+    P = input('ERROR! The Valid range for pressure is between 700 and 6200 kPag. Enter a pressure value in the given range: ');
 end
 %% Selecting Material
 disp('Select one of these materials: ');
@@ -150,9 +141,9 @@ end
 %% Inputs
 MC = input('Mass flow rate in tube side (cold flow) (kg/s) = '); 
 MH = input('Mass flow rate in shell side (hot flow) (kg/s) = ');
-Temp_Cold_1 = input('Inlet temp tube side (cold flow) = ');
-Temp_Hot_1 = input('Inlet temp shell side (hot flow) = ');
-z = input('Do you want to enter the outlet temprature of 1.tube(cold)    or    2.shell(hot) side? ');
+Temp_Cold_1 = input('Inlet temp. tube side (cold flow) = ');
+Temp_Hot_1 = input('Inlet temp. shell side (hot flow) = ');
+z = input('which side temp. do you want to enter? 1.tube(cold)    or    2.shell(hot) side? ');
 while 1>0
     if z==1
         Temp_Cold_2 = input('Outlet temp tube side (cold flow) = ');
@@ -184,7 +175,7 @@ while 1>0
     if Nu_pass==1 || Nu_pass==2 || Nu_pass==4 || Nu_pass==6 || Nu_pass==8
         break;
     end
-    Nu_pass = input('ERROR! Number of passes is an one digit even Number. Please reenter the Num. of Passes: ');
+    Nu_pass = input('ERROR! Number of passes is an even Number. Please reenter the Number of Passes: ');
 end
 %% Solving
 R = (Temp_Hot_1 - Temp_Hot_2) / (Temp_Cold_2 - Temp_Cold_1);
@@ -202,7 +193,7 @@ while thickness>=do
 end
 di = do - (2*thickness);
 L = input('Please enter the Length of the heat exchanger(mm): ');
-Tube_Pattern = input('What is your tube pattern?    1.Triangular            2.Square: ');
+Tube_Pattern = input('What is the tube pattern?    1.Triangular            2.Square: ');
 while 1>0
     if Tube_Pattern==1
         de = 1.1*(pt^2 - 0.917*(do^2))/do;
@@ -254,7 +245,7 @@ while 1>0
         break;
     end
 
-    Tube_Pattern = input('ERROR! Please enter an number between 1 and 2: ');
+    Tube_Pattern = input('ERROR! Please enter a number between 1 and 2: ');
 end
 
 U = 800;
@@ -348,13 +339,13 @@ end
 CB = exp(8.202 + 0.01506*log(A) + 0.06811*log(A)*log(A));
 final_cost = CB*FP*FD*FM;
 %% Displaying
-disp('A is:');
+disp('A:');
 disp(A);
-disp('The overall heat transfer coefficient is: ');
+disp('The overall heat transfer coefficient: ');
 disp(u);
-disp('Shell diameter is: ');
+disp('Shell diameter: ');
 disp(Ds);
-disp('The final cost is: ');
+disp('The final cost: ');
 disp(final_cost);
 disp('Number of tubes: ');
 disp(Nt);
